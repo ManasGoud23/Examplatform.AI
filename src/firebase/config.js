@@ -1,6 +1,6 @@
 import { initializeApp, getApps } from 'firebase/app';
 import { getAuth, GoogleAuthProvider } from 'firebase/auth';
-import { initializeFirestore, persistentLocalCache, persistentMultipleTabManager } from 'firebase/firestore';
+import { initializeFirestore, persistentLocalCache, persistentMultipleTabManager, getFirestore } from 'firebase/firestore';
 
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
@@ -33,8 +33,9 @@ try {
     })
   });
 } catch (e) {
-  // Fallback to standard firestore instance if persistence initialization fails
-  console.warn("Firestore persistent cache warning:", e);
+  // Fallback to standard Firestore if persistence fails (e.g. in some production environments)
+  console.warn("Firestore persistent cache unavailable, using standard Firestore:", e);
+  dbInstance = getFirestore(app);
 }
 
 export const db = dbInstance;
