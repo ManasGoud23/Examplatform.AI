@@ -1,5 +1,10 @@
 # 🚀 ExamPlatform.AI
 
+## 🌐 Live Application
+👉 **Live Demo:** [https://examplatform-ai.vercel.app](https://examplatform-ai.vercel.app)
+
+---
+
 ## 🧠 AI-Powered Personalized Examination Platform
 
 ExamPlatform.AI is an AI-powered examination platform that allows students to generate customized exams using AI, take assessments, receive instant results, and track their performance.
@@ -71,6 +76,9 @@ User
 ### AI
 - 🤖 Google Gemini API
 
+### Deployment
+- ⚡ [Vercel Production Deployment](https://examplatform-ai.vercel.app)
+
 ### Version Control
 - 🐙 Git
 - 🐙 GitHub
@@ -102,27 +110,34 @@ Gemini AI dynamically generates questions based on those requirements.
 
 ## 🚀 Getting Started
 
-### Prerequisites
+### Live Demo
+
+You can try the live application immediately without setting up locally:  
+👉 **[https://examplatform-ai.vercel.app](https://examplatform-ai.vercel.app)**
+
+### Local Setup
+
+#### Prerequisites
 
 - Node.js
 - npm
 - Firebase project
 - Gemini API access
 
-### Clone
+#### Clone
 
 ```bash
 git clone https://github.com/RishithaKumbham/Examplatform.AI.git
 cd Examplatform.AI
 ```
 
-### Install
+#### Install
 
 ```bash
 npm install
 ```
 
-### Environment Variables
+#### Environment Variables
 
 Create a local `.env` file.
 
@@ -140,7 +155,7 @@ VITE_GEMINI_API_KEY=
 
 > ⚠️ **NEVER commit the real `.env` file.**
 
-### Run
+#### Run
 
 ```bash
 npm run dev
