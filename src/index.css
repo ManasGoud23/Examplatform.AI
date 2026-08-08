@@ -1,0 +1,259 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --bg-primary: #030712;
+    --card-bg: rgba(17, 24, 39, 0.7);
+    --border-color: rgba(255, 255, 255, 0.08);
+
+    /* Animation tokens */
+    --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+    --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+    --ease-out: cubic-bezier(0, 0, 0.2, 1);
+    --duration-fast: 150ms;
+    --duration-normal: 250ms;
+    --duration-slow: 400ms;
+  }
+
+  .light {
+    --bg-primary: #f8fafc;
+    --card-bg: rgba(255, 255, 255, 0.85);
+    --border-color: rgba(0, 0, 0, 0.08);
+  }
+
+  body {
+    @apply bg-slate-950 text-slate-100 min-h-screen overflow-x-hidden font-sans antialiased selection:bg-indigo-500 selection:text-white;
+  }
+
+  .light body {
+    @apply bg-slate-50 text-slate-900;
+  }
+}
+
+/* ─── Custom Scrollbar ─────────────────────────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(148, 163, 184, 0.2);
+  border-radius: 9999px;
+  transition: background var(--duration-normal) var(--ease-smooth);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(148, 163, 184, 0.4);
+}
+
+/* ─── SaaS Glassmorphism Utilities ──────────────────────────────────────────── */
+.glass-panel {
+  background: rgba(15, 23, 42, 0.8);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.light .glass-panel {
+  background: rgba(255, 255, 255, 0.85);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.glass-card {
+  background: rgba(15, 23, 42, 0.6);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.light .glass-card {
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+/* Enhanced hover — GPU-composited via transform only */
+.glass-card-hover {
+  transition: transform var(--duration-normal) var(--ease-smooth),
+              box-shadow var(--duration-normal) var(--ease-smooth),
+              background var(--duration-normal) var(--ease-smooth),
+              border-color var(--duration-normal) var(--ease-smooth);
+  will-change: transform;
+}
+
+.glass-card-hover:hover {
+  background: rgba(30, 41, 59, 0.8);
+  border-color: rgba(99, 102, 241, 0.4);
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px -12px rgba(99, 102, 241, 0.22),
+              0 0 0 1px rgba(99, 102, 241, 0.08);
+}
+
+.light .glass-card-hover:hover {
+  background: rgba(255, 255, 255, 0.95);
+  border-color: rgba(99, 102, 241, 0.4);
+  box-shadow: 0 16px 32px -12px rgba(99, 102, 241, 0.15);
+}
+
+/* ─── Neon Glow Utilities ───────────────────────────────────────────────────── */
+.glow-indigo {
+  box-shadow: 0 0 25px -5px rgba(99, 102, 241, 0.3);
+}
+
+.glow-purple {
+  box-shadow: 0 0 25px -5px rgba(168, 85, 247, 0.3);
+}
+
+/* ─── Button Active / Press State ──────────────────────────────────────────── */
+.btn-press {
+  transition: transform var(--duration-fast) var(--ease-smooth),
+              box-shadow var(--duration-fast) var(--ease-smooth),
+              opacity var(--duration-fast) var(--ease-smooth);
+  will-change: transform;
+}
+
+.btn-press:hover {
+  transform: translateY(-1px);
+}
+
+.btn-press:active {
+  transform: scale(0.97) translateY(0px);
+  box-shadow: none;
+}
+
+/* ─── Input Focus Glow ─────────────────────────────────────────────────────── */
+input:focus, textarea:focus, select:focus {
+  transition: border-color var(--duration-normal) var(--ease-smooth),
+              box-shadow var(--duration-normal) var(--ease-smooth);
+}
+
+input:focus {
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.12);
+}
+
+/* ─── Skeleton Shimmer ──────────────────────────────────────────────────────── */
+@keyframes shimmer {
+  0% {
+    background-position: -200% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
+
+.skeleton-shimmer {
+  background: linear-gradient(
+    90deg,
+    rgba(51, 65, 85, 0.5) 25%,
+    rgba(71, 85, 105, 0.7) 50%,
+    rgba(51, 65, 85, 0.5) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.8s ease-in-out infinite;
+  border-radius: 0.75rem;
+}
+
+/* ─── Animations ────────────────────────────────────────────────────────────── */
+@keyframes pulseGlow {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 0.8; }
+}
+
+.animate-pulse-glow {
+  animation: pulseGlow 3s ease-in-out infinite;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp var(--duration-slow) var(--ease-smooth) both;
+}
+
+/* Orbit ring animation for loading states */
+@keyframes orbitRing {
+  0%   { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.animate-orbit {
+  animation: orbitRing 1.2s linear infinite;
+}
+
+/* Subtle float for hero accents */
+@keyframes floatY {
+  0%, 100% { transform: translateY(0px); }
+  50%      { transform: translateY(-8px); }
+}
+
+.animate-float {
+  animation: floatY 4s ease-in-out infinite;
+}
+
+/* Arrow nudge right on hover */
+.group:hover .group-hover\:translate-x-1 {
+  transform: translateX(4px);
+}
+
+/* ─── Nav item underline indicator ─────────────────────────────────────────── */
+.nav-underline {
+  position: relative;
+}
+
+.nav-underline::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(to right, #6366f1, #a855f7);
+  border-radius: 9999px;
+  transform: translateX(-50%);
+  transition: width var(--duration-normal) var(--ease-smooth);
+}
+
+.nav-underline:hover::after {
+  width: 60%;
+}
+
+/* ─── prefers-reduced-motion ────────────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .glass-card-hover {
+    transition: none !important;
+  }
+
+  .skeleton-shimmer {
+    animation: none !important;
+    background: rgba(51, 65, 85, 0.5) !important;
+  }
+
+  .animate-pulse-glow,
+  .animate-fade-in-up,
+  .animate-orbit,
+  .animate-float {
+    animation: none !important;
+  }
+}
